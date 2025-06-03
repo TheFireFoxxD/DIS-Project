@@ -4,7 +4,7 @@ When running this app for the first time, you need to create a virtual environme
 This can be done easily by running the script 'setup .dis_venv.ps1' in a terminal. 
 
 When running on Windows, you also need to the command:
-```ps
+```powershell
 Set-ExecutionPolicy Unrestricted -Scope Process
 ```
 
