@@ -11,12 +11,12 @@ Set-ExecutionPolicy Unrestricted -Scope Process
 
 When you are done creating the virtual environment, you simply run the script
 ```powershell
-& '.\run app.ps1'
+& '.\run app.ps1' 
 ```
 in order to run the app.
 
 ## Running the web-app
-When the program is started, open a web browser at [127.0.0.1:5000](127.0.0.1:5000).
+When the program is started, open a web browser at [http://127.0.0.1:5000](http://127.0.0.1:5000).
 
 At this point, there is no creating a new user. But there is an example user:
 * Username: User
@@ -30,7 +30,7 @@ In the right side of the webpage, there are different Genomes (i.e. different se
 
 In the simulation window, you can click on a plant to see it's attributes. These are the age, energy, color and active gene.
 
-If you click on the House button in the top right corner, you recenter the view of the simulation. If you click on the Leaft button
+If you click on the House button in the top right corner, you recenter the view of the simulation. If you click on the Leaf button to toggle the 'Genome Manager'
 
 ## E/R-Diagram for the Database
 ![E/R-Diagram](/er-diagram.png)
