@@ -8,8 +8,10 @@ When running on Windows, you also need to the command:
 Set-ExecutionPolicy Unrestricted -Scope Process
 ```
 
+When you are done creating the virtual environment, you simply run the script
 ```powershell
-cd minimal
+& '.\run app.ps1'
 ```
+in order to run the app.
 
-If y 
+![E/R-Diagram](/er-diagram.png)
