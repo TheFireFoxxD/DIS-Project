@@ -8,7 +8,7 @@ When running on Windows, you also need to the command:
 Set-ExecutionPolicy Unrestricted -Scope Process
 ```
 
-```ps
+```powershell
 cd minimal
 ```
 
