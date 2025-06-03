@@ -1,0 +1,325 @@
+/* Reset and Global Settings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Overall UI Layout */
+#ui-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Main Content (Canvas, Simulation Controls, Plant Details) */
+#main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Canvas Container */
+#canvas-container {
+  flex: 1;
+  background-color: #f9f9f9;
+  border: 1px solid #aaa;
+  overflow: hidden;
+  position: relative;
+}
+
+/* SVG Canvas */
+#canvas {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+#canvas.dragging {
+  cursor: grabbing;
+}
+
+/* Home Button Styling (Round with inline SVG) */
+#home-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 100;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+#home-button:hover {
+  background-color: #f0f0f0;
+}
+#home-button svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Leaf Button Styling (Similar to Home, but positioned below) */
+#leaf-button {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  z-index: 100;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+#leaf-button:hover {
+  background-color: #f0f0f0;
+}
+#leaf-button svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+#leaf-button img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+/* Simulation Controls Panel (existing styles) */
+#sim-controls {
+  padding: 10px;
+  background-color: #ddd;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+#sim-controls-inner {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+#sim-stats {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+/* Plant Details Panel (Horizontal Layout) */
+#plant-details {
+  padding: 10px;
+  background-color: #eee;
+  border-top: 1px solid #ccc;
+}
+.plant-info {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.plant-info > div {
+  margin-right: 15px;
+}
+.color-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+/* Sidebar for Plant Genome Display */
+#sidebar {
+  width: 300px;
+  padding: 15px;
+  background-color: #fff;
+  border-left: 1px solid #ccc;
+  overflow-y: auto;
+}
+#sidebar h2 {
+  margin-bottom: 10px;
+}
+
+/* Gene Box for Genome Display */
+.gene-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 2px;
+  width: 80px;
+  height: 80px;
+  margin: 5px;
+  border: 1px solid #ccc;
+}
+.gene-box div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  font-size: 12px;
+}
+.gene-center {
+  grid-column: 2;
+  grid-row: 2;
+  background-color: #eee;
+}
+.gene-top {
+  grid-column: 2;
+  grid-row: 1;
+}
+.gene-left {
+  grid-column: 1;
+  grid-row: 2;
+}
+.gene-right {
+  grid-column: 3;
+  grid-row: 2;
+}
+.gene-bottom {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+/* Genome Manager Sidebar */
+#genome-manager { 
+  position: fixed; 
+  top: 0; 
+  right: 0; 
+  width: 300px; 
+  height: 100%;
+  background: #fafafa; 
+  border-left: 1px solid #ccc;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.3); 
+  transition: transform 0.3s;
+  z-index: 200; 
+  overflow-y: auto; 
+  padding: 10px; 
+  transform: translateX(100%); }
+
+#genome-manager.open { transform: translateX(0); }
+
+#genome-manager li.selected {
+  background-color: #cce5ff;
+}
+
+/* Header and Tabs */
+.gm-header {
+  margin-bottom: 10px;
+}
+
+.gm-header h2 {
+  margin-bottom: 5px;
+  font-size: 18px;
+  text-align: center;
+}
+
+#gm-search-box {
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.gm-tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.gm-tab {
+  flex: 1;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: #eee;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.2s ease;
+}
+
+.gm-tab.active {
+  border-bottom: 2px solid #333;
+}
+
+/* Download Button styling */
+#download-genome-btn {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#download-genome-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* gm-content pages */
+.gm-content .gm-page {
+  display: none;
+}
+
+.gm-content .gm-page.active {
+  display: block;
+}
+
+/* Lists in Genome Manager */
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+ul li {
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+/* Delete button for Personal genomes */
+ul li .delete-btn {
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+ul li:hover .delete-btn {
+  display: inline;
+}
+ul li .delete-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: red;
+}
+
+/* Public tab owner info styling */
+.genome-owner {
+  font-size: 11px;
+  color: #777;
+  margin-top: 2px;
+}

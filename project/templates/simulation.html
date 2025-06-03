@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Evolution Simulation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <div id="ui-container">
+      <div id="main-content">
+        <!-- Canvas Container -->
+        <div id="canvas-container">
+          <svg id="canvas">
+            <g id="viewport"></g>
+            <rect id="click-overlay" x="0" y="0" width="100%" height="100%"
+                  fill="transparent" style="pointer-events:all;"></rect>
+          </svg>
+          <!-- Home Button -->
+          <button id="home-button" title="Center View">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <path d="M32 12l-20 20h6v20h12v-14h4v14h12v-20h6z"/>
+            </svg>
+          </button>
+          <!-- Leaf Button toggles the Genome Manager Sidebar -->
+          <button id="leaf-button" title="Toggle Genome Manager">
+            <img src="{{ url_for('static', filename='svg/leaf-logo.svg') }}" alt="Plant Icon">
+          </button>
+        </div>
+        <!-- Simulation Controls (if any) -->
+        <div id="sim-controls">
+          <!-- Your simulation control elements go here -->
+        </div>
+        <!-- Plant Info Bar (always visible at bottom) -->
+        <div id="plant-details">
+          <div class="plant-info">
+            <div><strong>Age:</strong> N/A</div>
+            <div><strong>Energy:</strong> N/A</div>
+            <div><strong>Cell Count:</strong> N/A</div>
+            <div>
+              <strong>Color:</strong>
+              <span class="color-box" style="background:#000"></span> N/A
+            </div>
+            <div><strong>Active Gene:</strong> N/A</div>
+          </div>
+        </div>
+      </div>
+      <!-- Plant Genome Sidebar (always visible on right) -->
+      <div id="sidebar">
+        <h2>Plant Genome</h2>
+        <div id="pg-actions">
+          <button id="pg-download-btn">Download</button>
+          <button id="pg-save-btn">Save</button>
+          <div id="pg-save-input-container" style="display: none;">
+            <input type="text" id="pg-save-input" placeholder="Enter genome name" pattern="[A-Za-z0-9_ ]+">
+            <button id="pg-save-confirm-btn">OK</button>
+          </div>
+        </div>
+        <div id="genome-display">
+          <p id="pg-filler">Click on a plant to inspect.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Genome Manager Sidebar (toggled via Leaf button) -->
+    <div id="genome-manager" class="open">
+      <div class="gm-header">
+        <h2>Genome Manager</h2>
+        <input type="text" id="gm-search-box" placeholder="Search genomes...">
+        <div class="gm-tabs">
+          <button class="gm-tab" data-tab="upload">Upload</button>
+          <button class="gm-tab" data-tab="personal">Personal</button>
+          <button class="gm-tab" data-tab="public">Public</button>
+        </div>
+      </div>
+      <div class="gm-content">
+        <!-- Upload Tab -->
+        <div class="gm-page" id="gm-upload">
+          <button id="gm-upload-btn">Upload Genome</button>
+          <input type="file" id="gm-genome-file-input" accept=".json" style="display:none">
+          <ul id="gm-uploaded-genomes-list"></ul>
+        </div>
+        <!-- Personal Tab -->
+        <div class="gm-page" id="gm-personal">
+          <ul id="gm-personal-genomes-list"></ul>
+        </div>
+        <!-- Public Tab -->
+        <div class="gm-page" id="gm-public">
+          <h3>Official Genomes</h3>
+          <ul id="gm-public-official-genomes-list"></ul>
+          <h3>User Genomes</h3>
+          <ul id="gm-public-other-genomes-list"></ul>
+        </div>
+      </div>
+    </div>
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/simulation.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

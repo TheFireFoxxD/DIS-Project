@@ -1,0 +1,1 @@
+python '.\project\app.py'
