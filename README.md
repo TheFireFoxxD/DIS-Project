@@ -46,4 +46,4 @@ This goes into an ISA relationship, which splits presets into `Global` and `Loca
 
 The difference between these, is that local presets has a relationship with a `User` via the relationship-set `Owner`. This `User` entity has the attribute `username` (which is the key for the entity)
 
-![E/R-Diagram](/er-diagram.png)
+![E/R-Diagram](/final-er-diagram.png)
